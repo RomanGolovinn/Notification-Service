@@ -14,6 +14,7 @@ type Notification struct {
 	Type     NotificationType
 	Address  string
 	IsSended bool
+	Message  string
 }
 
 func (n *Notification) getID() int64 {
@@ -30,4 +31,8 @@ func (n *Notification) getAddress() string {
 
 func (n *Notification) isSended() bool {
 	return n.IsSended
+}
+
+func (n *Notification) getMessage() string {
+	return n.Message
 }
