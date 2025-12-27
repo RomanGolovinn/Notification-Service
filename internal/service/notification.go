@@ -1,11 +1,13 @@
 package service
 
-type NotificationType int
+import "context"
+
+type NotificationType string
 
 const (
-	Email NotificationType = iota
-	SMS
-	HTTP
+	Email NotificationType = "email"
+	SMS   NotificationType = "sms"
+	HTTP  NotificationType = "http"
 	// Notifications can be different types (can be expanded)
 )
 
@@ -17,22 +19,7 @@ type Notification struct {
 	Message  string
 }
 
-func (n *Notification) getID() int64 {
-	return n.ID
-}
-
-func (n *Notification) getType() NotificationType {
-	return n.Type
-}
-
-func (n *Notification) getAddress() string {
-	return n.Address
-}
-
-func (n *Notification) isSended() bool {
-	return n.IsSended
-}
-
-func (n *Notification) getMessage() string {
-	return n.Message
+type NotificationSender interface {
+	SendNotification(context context.Context, notification Notification) error
+	Type() NotificationType
 }
