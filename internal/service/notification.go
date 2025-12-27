@@ -1,6 +1,9 @@
 package service
 
-import "context"
+import (
+	"context"
+	"time"
+)
 
 type NotificationType string
 
@@ -17,9 +20,14 @@ type Notification struct {
 	Address  string
 	IsSended bool
 	Message  string
+
+	CreatedAt   time.Time
+	ScheduledAt time.Time
+	SentAt      *time.Time // pointer for correct nil value conserving
 }
 
 type NotificationSender interface {
 	SendNotification(context context.Context, notification Notification) error
 	Type() NotificationType
+	// EmailSender, SMSSender, HTTPSender must implement
 }
