@@ -27,7 +27,7 @@ type Notification struct {
 }
 
 type NotificationSender interface {
-	SendNotification(context context.Context, notification Notification) error
+	SendNotification(ctx context.Context, notification Notification) error
 	Type() NotificationType
 	// EmailSender, SMSSender, HTTPSender must implement
 }

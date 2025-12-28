@@ -25,7 +25,7 @@ func NewEmailSender(config EmailConfig) *EmailSender {
 	return &EmailSender{config: config}
 }
 
-func (s *EmailSender) Send(ctx context.Context, notification service.Notification) error {
+func (s *EmailSender) SendNotification(ctx context.Context, notification service.Notification) error {
 	subject := "Уведомление"
 	mime := "Mime-Version: 1.0;\nContent-Type: text; charset=\"UTF-8\";\n\n"
 	msg := []byte(subject + mime + notification.Message)
