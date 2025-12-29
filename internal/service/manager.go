@@ -44,14 +44,17 @@ func (service *NotificationService) Handle(ctx context.Context,
 		service.logger.Error("failed to save notification", slog.Any("error", err))
 		return fmt.Errorf("iled to save to repo: %w", err)
 	}
+	return nil
+}
 
+func (service *NotificationService) Send(ctx context.Context, notification *Notification) error {
 	sender, exist := service.senders[notification.Type]
 	if !exist {
 		service.logger.Error("sender not found", "type", string(notification.Type))
 		return fmt.Errorf("sender not found for type: %s", notification.Type)
 	}
 
-	err = sender.SendNotification(ctx, *notification)
+	err := sender.SendNotification(ctx, *notification)
 	if err != nil {
 		service.logger.Error("failed to send notification", slog.Any("error", err))
 		return fmt.Errorf("sender.SendNotification")
