@@ -1,0 +1,11 @@
+{
+  "server_port": ":8080",
+  "db_dsn": "host=localhost user=postgres password=secret dbname=notifications sslmode=disable",
+  "email_config": {
+    "host": "smtp.gmail.com",
+    "port": 587,
+    "username": "your-app@gmail.com",
+    "password": "your-app-password",
+    "from": "My Notifier <no-reply@gmail.com>"
+  }
+}
