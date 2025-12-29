@@ -24,7 +24,8 @@ func (r *PostgresRepository) Save(ctx context.Context, notification *service.Not
 		RETURNING id`
 
 	err := r.db.QueryRowContext(ctx, query, notification.Type, notification.Address,
-		notification.Message, notification.CreatedAt).Scan(&notification.ID)
+		notification.Message, notification.CreatedAt, notification.ScheduledAt,
+		notification.IsSended).Scan(&notification.ID)
 	if err != nil {
 		return fmt.Errorf("failed to insert notification: %w", err)
 	}
@@ -35,7 +36,7 @@ func (r *PostgresRepository) Save(ctx context.Context, notification *service.Not
 func (r *PostgresRepository) GetPending(ctx context.Context) ([]service.Notification, error) {
 	//will be called once every time to check whether it is time to send a notification
 	query := `SELECT id, type, address, message FROM notifications 
-              WHERE is_sent = false AND scheduled_at <= NOW() LIMIT 100`
+              WHERE is_sended = false AND scheduled_at <= NOW() LIMIT 100`
 
 	rows, err := r.db.QueryContext(ctx, query)
 	if err != nil {

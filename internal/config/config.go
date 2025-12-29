@@ -10,7 +10,7 @@ import (
 type Config struct {
 	ServerPort string             `json:"server_port"`
 	DBDSN      string             `json:"db_dsn"`
-	Email      sender.EmailConfig `json:"email"`
+	Email      sender.EmailConfig `json:"email_config"`
 }
 
 func LoadConfig(path string) (*Config, error) {

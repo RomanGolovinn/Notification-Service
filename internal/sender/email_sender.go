@@ -14,11 +14,11 @@ type EmailSender struct {
 }
 
 type EmailConfig struct {
-	Host     string
-	Port     int
-	Username string
-	Password string
-	From     string
+	Host     string `json:"host"`
+	Port     int    `json:"port"`
+	Username string `json:"username"`
+	Password string `json:"password"`
+	From     string `json:"from"`
 }
 
 func NewEmailSender(config EmailConfig) *EmailSender {
