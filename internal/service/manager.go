@@ -35,6 +35,8 @@ func (service *NotificationService) Handle(ctx context.Context,
 	notification *Notification) error {
 	notification.CreatedAt = time.Now()
 
+	notification.IsSended = false
+
 	err := service.repo.Save(ctx, notification)
 	if err != nil {
 		service.logger.Error("failed to save notification", slog.Any("error", err))
