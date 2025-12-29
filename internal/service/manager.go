@@ -10,6 +10,8 @@ import (
 type NotificationRepository interface {
 	//interface for db
 	Save(context context.Context, notification *Notification) error
+	MarkAsSent(ctx context.Context, id int64) error
+	GetPending(ctx context.Context) ([]Notification, error)
 }
 
 type NotificationService struct {
