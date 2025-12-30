@@ -1,1 +1,13 @@
-# Notification-Service
+# Notification Service 
+
+Микросервис для отправки уведомлений по электронной почте. Проект реализует асинхронную обработку очереди уведомлений из базы данных PostgreSQL и отправку через SMTP.
+
+## Возможности
+* **SMTP Integration**: Отправка через реальные сервера (Gmail) или локальные инструменты разработки (Mailpit).
+* **Worker Pattern**: Фоновая обработка уведомлений.
+* **Integration Tests**: Автоматическая проверка доставки писем через API Mailpit.
+
+## Технологии
+* **Language**: Go 1.23+
+* **Database**: PostgreSQL
+* **Testing**: Mailpit
